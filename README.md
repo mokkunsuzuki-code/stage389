@@ -1249,3 +1249,99 @@ See the repository-level:
 `LICENSE`
 
 The MIT License applies to the published source code and documentation in this repository. It does not override confidentiality requirements, security boundaries, private-material restrictions, or applicable third-party licenses.
+
+---
+
+## Stage388 — Independent Assessment Readiness & Evidence Package Gate
+
+日本語：
+
+**第三者評価準備性・証拠パッケージゲート**
+
+Stage388 extends Stage387 without changing the verified Stage387 result.
+
+Its purpose is to organize the existing public verification evidence into a
+deterministic package that can be independently evaluated by external
+researchers, OSS security communities, and security professionals.
+
+### Source
+
+Stage387 source commit:
+
+`739cea647de6d64313be7be874a7aaa0295bc05e`
+
+Inherited Stage387 decision:
+
+`pqc_multi_implementation_interoperability_verified`
+
+### Stage388 Decision
+
+Successful Stage388 verification produces:
+
+`independent_assessment_evidence_package_ready`
+
+This decision means that the evidence package is ready for independent
+assessment.
+
+It does not mean that an external assessment or formal certification has been
+completed.
+
+Stage388 therefore permanently retains the following limitations:
+
+`external_assessment_completed = false`
+
+`formal_certification = false`
+
+`system_wide_formal_acceptance = false`
+
+`entire_system_quantum_safe = false`
+
+### Evidence Package
+
+Stage388 includes machine-readable definitions for:
+
+- assessment scope
+- threat model
+- trust boundaries
+- guarantees
+- non-guarantees
+- known limitations
+- positive and negative tests
+- Stage387 provenance
+- package membership
+- deterministic SHA-256 evidence binding
+- canonical package verification
+
+The Stage388 Fail-Closed suite verifies rejection of Stage387 evidence
+tampering, evidence omission, SHA mismatch, private-material publication,
+unauthorized state promotion, provenance mismatch, and decision promotion.
+
+### Stage389 Separation
+
+Stage388 does not perform or claim completion of the final external
+dual-timestamp anchor.
+
+The finalized Stage388 canonical package hash is intended to become the input
+to Stage389:
+
+`RFC3161 + OpenTimestamps`
+
+Until Stage389 independently verifies those anchors:
+
+`rfc3161_verified = false`
+
+`opentimestamps_verified = false`
+
+`dual_timestamp_verified = false`
+
+### Stage388 License
+
+This project is licensed under the MIT License.
+
+See the repository-level:
+
+`LICENSE`
+
+The MIT License applies to the published source code and documentation in this
+repository. It does not override confidentiality requirements, security
+boundaries, private-material restrictions, or applicable third-party licenses.

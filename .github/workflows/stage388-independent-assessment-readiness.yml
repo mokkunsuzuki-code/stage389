@@ -1,0 +1,285 @@
+name: Stage388 Independent Assessment Readiness
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  stage388-independent-assessment:
+    name: Stage388 Independent Assessment Verification
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Show environment
+        run: |
+          python --version
+          git --version
+          uname -a
+
+      - name: Validate Python syntax
+        run: |
+          python -m py_compile \
+            development/stage388/verify_stage388_assessment_package.py \
+            development/stage388/test_stage388_fail_closed.py \
+            development/stage388/generate_stage388_evidence_manifest.py \
+            development/stage388/verify_stage388_canonical_package.py
+
+      - name: Verify Stage388 base assessment package
+        run: |
+          python \
+            development/stage388/verify_stage388_assessment_package.py
+
+      - name: Run Stage388 Fail-Closed tests
+        run: |
+          python \
+            development/stage388/test_stage388_fail_closed.py
+
+      - name: Regenerate deterministic evidence manifest
+        run: |
+          python \
+            development/stage388/generate_stage388_evidence_manifest.py
+
+      - name: Verify deterministic manifest reproduction
+        run: |
+          git diff --exit-code -- \
+            development/stage388/stage388_evidence_manifest.json \
+            development/stage388/stage388_evidence_manifest.sha256
+
+      - name: Verify Stage388 canonical package
+        run: |
+          python \
+            development/stage388/verify_stage388_canonical_package.py \
+            > /tmp/stage388-result.json
+
+          cat /tmp/stage388-result.json
+
+          cmp \
+            /tmp/stage388-result.json \
+            development/stage388/stage388_assessment_readiness_result.json
+
+      - name: Verify SHA-256 sidecars
+        run: |
+          sha256sum -c \
+            development/stage388/stage388_evidence_manifest.sha256
+
+          sha256sum -c \
+            development/stage388/stage388_assessment_readiness_result.sha256
+
+      - name: Verify mandatory false-state
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          p = Path(
+              "development/stage388/"
+              "stage388_assessment_readiness_result.json"
+          )
+
+          d = json.loads(
+              p.read_text(
+                  encoding="utf-8"
+              )
+          )
+
+          assert (
+              d["decision"]
+              == "independent_assessment_evidence_package_ready"
+          )
+
+          assert (
+              d["verification_status"]
+              == "verified"
+          )
+
+          assert (
+              d["critical_failure_count"]
+              == 0
+          )
+
+          required_false = (
+              "external_assessment_completed",
+              "formal_certification",
+              "system_wide_formal_acceptance",
+              "entire_system_quantum_safe",
+          )
+
+          for key in required_false:
+              assert (
+                  d["limitations"][key]
+                  is False
+              ), key
+
+          timestamp = d[
+              "external_timestamp"
+          ]
+
+          assert (
+              timestamp[
+                  "rfc3161_verified"
+              ]
+              is False
+          )
+
+          assert (
+              timestamp[
+                  "opentimestamps_verified"
+              ]
+              is False
+          )
+
+          assert (
+              timestamp[
+                  "dual_timestamp_verified"
+              ]
+              is False
+          )
+
+          assert (
+              timestamp[
+                  "scheduled_stage"
+              ]
+              == 389
+          )
+
+          print(
+              "PASS: Stage388 mandatory "
+              "non-claim state verified"
+          )
+          PY
+
+      - name: Verify Stage388 Pages evidence mirror
+        run: |
+          python - <<'PY'
+          import hashlib
+          from pathlib import Path
+
+          names = [
+              "README.md",
+              "stage388_assessment_scope.json",
+              "stage388_threat_model.json",
+              "stage388_trust_boundaries.json",
+              "stage388_guarantees.json",
+              "stage388_non_guarantees.json",
+              "stage388_known_limitations.json",
+              "stage388_test_matrix.json",
+              "stage388_provenance.json",
+              "stage388_evidence_package_contract.json",
+              "stage388_evidence_manifest.json",
+              "stage388_evidence_manifest.sha256",
+              "stage388_assessment_readiness_result.json",
+              "stage388_assessment_readiness_result.sha256",
+          ]
+
+          def digest(path):
+              return hashlib.sha256(
+                  path.read_bytes()
+              ).hexdigest()
+
+          failures = []
+
+          for name in names:
+              source = (
+                  Path("development/stage388")
+                  / name
+              )
+
+              mirror = (
+                  Path("docs/verification/stage388")
+                  / name
+              )
+
+              if not source.is_file():
+                  failures.append(
+                      f"source missing: {name}"
+                  )
+                  continue
+
+              if not mirror.is_file():
+                  failures.append(
+                      f"mirror missing: {name}"
+                  )
+                  continue
+
+              if digest(source) != digest(mirror):
+                  failures.append(
+                      f"mirror mismatch: {name}"
+                  )
+
+          if failures:
+              for failure in failures:
+                  print(
+                      "FAIL:",
+                      failure,
+                  )
+
+              raise SystemExit(1)
+
+          print(
+              "PASS: Stage388 Pages evidence "
+              "mirror matches development evidence"
+          )
+          PY
+
+      - name: Verify Stage387 / Stage388 Pages preservation
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          text = Path(
+              "docs/index.html"
+          ).read_text(
+              encoding="utf-8"
+          )
+
+          required = [
+              "STAGE388_CURRENT_PAGE_HEADER_START",
+              "STAGE388_CURRENT_PAGE_HEADER_END",
+              "STAGE387_CURRENT_PAGE_HEADER_START",
+              "STAGE387_CURRENT_PAGE_HEADER_END",
+              "STAGE388_APPEND_ONLY_START",
+              "STAGE388_APPEND_ONLY_END",
+              "STAGE387_APPEND_ONLY_START",
+              "STAGE387_APPEND_ONLY_END",
+              "independent_assessment_evidence_package_ready",
+              "pqc_multi_implementation_interoperability_verified",
+          ]
+
+          failures = [
+              item
+              for item in required
+              if item not in text
+          ]
+
+          if failures:
+              for item in failures:
+                  print(
+                      "FAIL: missing",
+                      item,
+                  )
+
+              raise SystemExit(1)
+
+          print(
+              "PASS: Stage387 / Stage388 "
+              "Pages preservation verified"
+          )
+          PY
+
+      - name: Final repository diff check
+        run: |
+          git diff --check

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="google" content="notranslate">
-  <title>Stage387: PQC Multi-Implementation Interoperability &amp; Verifier Independence Gate</title>
+  <title>Stage388: Independent Assessment Readiness &amp; Evidence Package Gate</title>
   <style>
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 0; background: #f6f8fa; color: #24292f; }
     header { background: #0d1117; color: white; padding: 44px 32px; }
@@ -27,6 +27,46 @@
 <body>
 
 
+
+<!-- STAGE388_CURRENT_PAGE_HEADER_START -->
+<section class="card">
+  <h1>Stage388</h1>
+
+  <h2>
+    Independent Assessment Readiness
+    &amp; Evidence Package Gate
+  </h2>
+
+  <p>
+    Stage387までのPQC複数実装検証、
+    独立再検証、公開証拠、Fail-Closed、
+    再現性を変更せず、
+    外部研究者、OSSセキュリティコミュニティ、
+    セキュリティ専門家が独立評価できる
+    決定論的な第三者評価用証拠パッケージへ整理します。
+  </p>
+
+  <p>
+    評価範囲、脅威モデル、保証範囲、
+    非保証範囲、信頼境界、既知の制限、
+    正常系・異常系試験、Stage387 provenance、
+    SHA-256 evidence bindingをFail-Closedで固定します。
+  </p>
+
+  <p>
+    Current decision:
+    <code>independent_assessment_evidence_package_ready</code>
+  </p>
+
+  <p>
+    External assessment completed:
+    <code>false</code>
+    &nbsp;|&nbsp;
+    Formal certification:
+    <code>false</code>
+  </p>
+</section>
+<!-- STAGE388_CURRENT_PAGE_HEADER_END -->
 
 <!-- STAGE387_CURRENT_PAGE_HEADER_START -->
 <section class="card">
@@ -4634,6 +4674,260 @@ Verified / Pending / Block</pre>
   </p>
 </section>
 <!-- STAGE387_APPEND_ONLY_END -->
+<!-- STAGE388_APPEND_ONLY_START -->
+<section class="card" id="stage388">
+  <h2>
+    Stage388: Independent Assessment Readiness
+    &amp; Evidence Package Gate
+  </h2>
+
+  <p>
+    Stage388は、Stage387で確立した
+    PQC Multi-Implementation Interoperabilityと
+    Verifier Independenceの検証結果を変更せず、
+    第三者が独立して評価できる決定論的な
+    証拠パッケージへ整理するステージです。
+  </p>
+
+  <h3>Stage387 to Stage388 Evolution</h3>
+
+  <p>
+    Stage387では、同一のML-DSA-65公開証拠を
+    OpenSSLとCloudflare CIRCLの複数実装で検証し、
+    特定の検証器だけに依存しないことを確認しました。
+  </p>
+
+  <p>
+    Stage388では、その検証結果そのものを変更せず、
+    外部研究者、OSSセキュリティコミュニティ、
+    セキュリティ専門家が評価するために必要な
+    assessment scope、threat model、trust boundaries、
+    guarantees、non-guarantees、known limitations、
+    test matrix、provenanceを明示します。
+  </p>
+
+  <h3>Current Decision</h3>
+
+  <p>
+    <code>independent_assessment_evidence_package_ready</code>
+  </p>
+
+  <p>
+    このdecisionは、
+    「第三者評価用証拠パッケージの準備が整った」
+    ことだけを意味します。
+  </p>
+
+  <p>
+    外部評価完了、正式認証、
+    システム全体の正式承認、
+    QSP全体の量子安全性を意味しません。
+  </p>
+
+  <h3>Mandatory Non-Claim State</h3>
+
+  <ul>
+    <li>
+      External assessment completed:
+      <code>false</code>
+    </li>
+    <li>
+      Formal certification:
+      <code>false</code>
+    </li>
+    <li>
+      System-wide formal acceptance:
+      <code>false</code>
+    </li>
+    <li>
+      Entire system quantum safe:
+      <code>false</code>
+    </li>
+  </ul>
+
+  <h3>Fail-Closed Negative Verification</h3>
+
+  <p>
+    Stage388では、正常系だけでなく、
+    以下の異常を意図的に発生させ、
+    Fail-Closedで拒否することを確認しています。
+  </p>
+
+  <ol>
+    <li>Stage387 result tampering</li>
+    <li>Required evidence missing</li>
+    <li>Stage387 SHA-256 mismatch</li>
+    <li>Private material publication</li>
+    <li>Unauthorized external-assessment completion claim</li>
+    <li>Unauthorized formal-certification claim</li>
+    <li>Unauthorized system-wide acceptance claim</li>
+    <li>Unauthorized entire-system quantum-safe claim</li>
+    <li>Stage387 source-commit mismatch</li>
+    <li>Unauthorized success-decision promotion</li>
+  </ol>
+
+  <h3>Deterministic Evidence Package</h3>
+
+  <p>
+    Stage388の証拠パッケージは、
+    明示的なallowlistとSHA-256 bindingを用いて
+    決定論的に生成・再検証されます。
+  </p>
+
+  <p>
+    Canonical package hashは、
+    自己参照による循環を避けるため
+    このHTMLへ直接埋め込まず、
+    以下のEvidence Manifestを正本として参照します。
+  </p>
+
+  <h3>Public Stage388 Evidence</h3>
+
+  <ul>
+    <li>
+      <a href="./verification/stage388/stage388_assessment_scope.json">
+        Stage388 Assessment Scope
+      </a>
+    </li>
+
+    <li>
+      <a href="./verification/stage388/stage388_threat_model.json">
+        Stage388 Threat Model
+      </a>
+    </li>
+
+    <li>
+      <a href="./verification/stage388/stage388_trust_boundaries.json">
+        Stage388 Trust Boundaries
+      </a>
+    </li>
+
+    <li>
+      <a href="./verification/stage388/stage388_guarantees.json">
+        Stage388 Guarantees
+      </a>
+    </li>
+
+    <li>
+      <a href="./verification/stage388/stage388_non_guarantees.json">
+        Stage388 Non-Guarantees
+      </a>
+    </li>
+
+    <li>
+      <a href="./verification/stage388/stage388_known_limitations.json">
+        Stage388 Known Limitations
+      </a>
+    </li>
+
+    <li>
+      <a href="./verification/stage388/stage388_test_matrix.json">
+        Stage388 Test Matrix
+      </a>
+    </li>
+
+    <li>
+      <a href="./verification/stage388/stage388_provenance.json">
+        Stage388 Provenance
+      </a>
+    </li>
+
+    <li>
+      <a href="./verification/stage388/stage388_evidence_package_contract.json">
+        Stage388 Evidence Package Contract
+      </a>
+    </li>
+
+    <li>
+      <a href="./verification/stage388/stage388_evidence_manifest.json">
+        Stage388 Canonical Evidence Manifest
+      </a>
+    </li>
+
+    <li>
+      <a href="./verification/stage388/stage388_evidence_manifest.sha256">
+        Stage388 Manifest SHA-256 Record
+      </a>
+    </li>
+
+    <li>
+      <a href="./verification/stage388/stage388_assessment_readiness_result.json">
+        Stage388 Assessment Readiness Result
+      </a>
+    </li>
+
+    <li>
+      <a href="./verification/stage388/stage388_assessment_readiness_result.sha256">
+        Stage388 Result SHA-256 Record
+      </a>
+    </li>
+
+    <li>
+      <a href="./verification/stage388/README.md">
+        Stage388 Independent Assessment Instructions
+      </a>
+    </li>
+  </ul>
+
+  <h3>Stage389 External Timestamp Boundary</h3>
+
+  <p>
+    Stage388では、
+    RFC3161およびOpenTimestampsによる
+    canonical packageの外部時間固定を実施済みとは主張しません。
+  </p>
+
+  <ul>
+    <li>
+      RFC3161 verified:
+      <code>false</code>
+    </li>
+    <li>
+      OpenTimestamps verified:
+      <code>false</code>
+    </li>
+    <li>
+      Dual timestamp verified:
+      <code>false</code>
+    </li>
+    <li>
+      External timestamp stage:
+      <code>389</code>
+    </li>
+  </ul>
+
+  <p>
+    Stage389では、
+    Stage388の最終canonical package hashを対象として
+    RFC3161とOpenTimestampsの二重外部アンカーを
+    Fail-Closedで検証する予定です。
+  </p>
+
+  <h3>Preservation Boundary</h3>
+
+  <p>
+    Stage388はStage387以前の検証結果、
+    公開ページ、公開証拠を削除、置換、
+    上書きしません。
+  </p>
+
+  <h3>Publication Boundary</h3>
+
+  <ul>
+    <li>No private core is published.</li>
+    <li>No private directory is published.</li>
+    <li>No secret, credential, token, seed, or private key is published.</li>
+    <li>No raw QKD secret material is published.</li>
+    <li>Only reviewed public assessment evidence is published.</li>
+  </ul>
+
+  <p>
+    <strong>License:</strong>
+    MIT License
+  </p>
+</section>
+<!-- STAGE388_APPEND_ONLY_END -->
+
 
 </body>
 </html>

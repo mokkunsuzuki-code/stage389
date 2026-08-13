@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "stage": 388,
+  "threat_model": {
+    "protected_against": [
+      "unintended modification of inherited Stage387 evidence",
+      "evidence-file omission",
+      "evidence-file substitution",
+      "manifest hash mismatch",
+      "unexpected private-material publication",
+      "unsupported success-state promotion",
+      "ambiguity between verified scope and unverified scope"
+    ],
+    "not_protected_against": [
+      "compromise of an external assessor",
+      "compromise of GitHub infrastructure",
+      "compromise of the local operating system before evidence generation",
+      "future cryptanalytic breaks",
+      "physical attacks outside the declared verification scope"
+    ]
+  }
+}

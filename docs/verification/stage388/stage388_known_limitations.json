@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "stage": 388,
+  "known_limitations": {
+    "external_assessment_completed": false,
+    "formal_certification": false,
+    "system_wide_formal_acceptance": false,
+    "entire_system_quantum_safe": false,
+    "dual_timestamp_package_anchor_completed": false,
+    "limitations": [
+      "Stage388 prepares evidence for assessment but does not perform the assessment.",
+      "Stage388 does not independently certify the security of QSP.",
+      "Stage388 inherits the scope and limitations of prior-stage evidence.",
+      "External timestamp anchoring of the Stage388 canonical package is deferred to Stage389."
+    ]
+  }
+}

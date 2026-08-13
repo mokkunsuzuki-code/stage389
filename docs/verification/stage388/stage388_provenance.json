@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0",
+  "stage": 388,
+  "source_stage": 387,
+  "source_commit": "739cea647de6d64313be7be874a7aaa0295bc05e",
+  "source_repository": "https://github.com/mokkunsuzuki-code/stage387",
+  "inheritance_model": "copy_then_additive_extension",
+  "stage387_results_modified_by_stage388": false,
+  "inherited_stage387_decision": "pqc_multi_implementation_interoperability_verified",
+  "stage388_external_assessment_status": "not_completed"
+}

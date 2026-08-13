@@ -458,3 +458,59 @@ development/stage387/*
 # Stage387 public multi-implementation interoperability workflow
 
 !.github/workflows/stage387-pqc-multi-implementation-interoperability.yml
+
+# ============================================================
+# Stage388 public independent-assessment evidence package
+# Independent Assessment Readiness & Evidence Package Gate
+# ============================================================
+
+!development/stage388/
+development/stage388/*
+
+# Stage388 assessment definition documents
+!development/stage388/stage388_assessment_scope.json
+!development/stage388/stage388_threat_model.json
+!development/stage388/stage388_trust_boundaries.json
+!development/stage388/stage388_guarantees.json
+!development/stage388/stage388_non_guarantees.json
+!development/stage388/stage388_known_limitations.json
+!development/stage388/stage388_test_matrix.json
+
+# Stage388 local source-copy record — never publish
+.stage388-source-stage387-commit
+
+# Stage388 public provenance / package contract / verifier
+!development/stage388/stage388_provenance.json
+!development/stage388/stage388_evidence_package_contract.json
+!development/stage388/verify_stage388_assessment_package.py
+
+# Stage388 local source-copy record — never publish
+.stage388-source-stage387-commit
+
+# Stage388 public provenance / package contract / verifier
+!development/stage388/stage388_provenance.json
+!development/stage388/stage388_evidence_package_contract.json
+!development/stage388/verify_stage388_assessment_package.py
+
+# Stage388 public Fail-Closed test suite
+!development/stage388/test_stage388_fail_closed.py
+
+# Stage388 deterministic canonical evidence package
+!development/stage388/generate_stage388_evidence_manifest.py
+!development/stage388/verify_stage388_canonical_package.py
+!development/stage388/stage388_evidence_manifest.json
+!development/stage388/stage388_evidence_manifest.sha256
+!development/stage388/stage388_assessment_readiness_result.json
+!development/stage388/stage388_assessment_readiness_result.sha256
+
+# Stage388 public independent-assessment instructions
+!development/stage388/README.md
+
+# Stage388 public independent-assessment verification workflow
+!.github/workflows/stage388-independent-assessment-readiness.yml
+
+# Stage388 public independent-assessment instructions
+!development/stage388/README.md
+
+# Stage388 public independent-assessment verification workflow
+!.github/workflows/stage388-independent-assessment-readiness.yml

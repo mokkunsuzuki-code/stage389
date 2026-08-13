@@ -1,0 +1,128 @@
+{
+  "canonical_package_sha256": "088c44ae8e80ce068e24e7a39e2065ed280207eae53ae42e58a5dabb05673bd3",
+  "canonicalization": "UTF-8 JSON; sort_keys=true; separators=(',', ':'); manifest self-hash excluded",
+  "entries": [
+    {
+      "path": ".github/workflows/stage388-independent-assessment-readiness.yml",
+      "sha256": "6822b2034de93aedf88625e611cfe00e2528a14ac547fd6d8c552ec77d9bd02e",
+      "size_bytes": 7559
+    },
+    {
+      "path": "README.md",
+      "sha256": "d801b9d7c8f7952a34b317ef88bf155756d9f021b7c99dbdf2c410dcbb663073",
+      "size_bytes": 37268
+    },
+    {
+      "path": "development/stage387/stage387_evidence_portability_manifest.json",
+      "sha256": "d5a3a7c93b1e2745bd299b950157010e1feabe4a88b0da7ad4ce7b2d663c4994",
+      "size_bytes": 4945
+    },
+    {
+      "path": "development/stage387/stage387_evidence_portability_manifest.sha256",
+      "sha256": "5dcace553657994ac9309178e85491c2d1d5a070f527bf15dce47f92eee7e940",
+      "size_bytes": 131
+    },
+    {
+      "path": "development/stage387/stage387_pqc_interoperability_policy.json",
+      "sha256": "ef66ef32af7e1c844f17f0fe6402041a25fb4c58eb573196e1d50d99ef91c0d6",
+      "size_bytes": 1625
+    },
+    {
+      "path": "development/stage387/stage387_pqc_interoperability_policy.sha256",
+      "sha256": "5019b31ac661838d711e83311642a72d93c8a869cc805639c8371c49bb671ad0",
+      "size_bytes": 129
+    },
+    {
+      "path": "development/stage387/stage387_pqc_multi_implementation_interoperability_result.json",
+      "sha256": "682a9aa96a7ec1eba9a0dea956971838a4ea222dd540adfc79f4776a6f0237d8",
+      "size_bytes": 1800
+    },
+    {
+      "path": "development/stage387/stage387_pqc_multi_implementation_interoperability_result.sha256",
+      "sha256": "3e14f8e3e77877d759d1a8d3163bc1a22910dab892e74fd4529495bb4d61c190",
+      "size_bytes": 150
+    },
+    {
+      "path": "development/stage388/README.md",
+      "sha256": "4ddb93b92aa3eb3c3fa346b352ac71d8e857ff128d711ebf555e78e3f6457fe2",
+      "size_bytes": 3848
+    },
+    {
+      "path": "development/stage388/generate_stage388_evidence_manifest.py",
+      "sha256": "c5ceab6c57c19d2c0388b41428f728167c91e7c35351e1fbb209acc1f5c6bfb1",
+      "size_bytes": 4658
+    },
+    {
+      "path": "development/stage388/stage388_assessment_scope.json",
+      "sha256": "1e4343b2cde72e819688f7a8929e8155e0245731a4a690028a941aa5db1fe420",
+      "size_bytes": 593
+    },
+    {
+      "path": "development/stage388/stage388_evidence_package_contract.json",
+      "sha256": "d49289a27b94650f1407e06f1e8d892a41b45c4034cd2e2b9616408313f53cb5",
+      "size_bytes": 2701
+    },
+    {
+      "path": "development/stage388/stage388_guarantees.json",
+      "sha256": "ba361e377c70ab9681548f3dcba70914afd0e5ca74c17e83aa17061a9a1c4de0",
+      "size_bytes": 428
+    },
+    {
+      "path": "development/stage388/stage388_known_limitations.json",
+      "sha256": "f3f286f077902345a65b8c161f5b7489e32aec723e5398f32d278dbd69aca728",
+      "size_bytes": 653
+    },
+    {
+      "path": "development/stage388/stage388_non_guarantees.json",
+      "sha256": "48a67fdee69c17b7bf2f539a3af09477e63f5b0d1afc1d76ecfa3a41236b1270",
+      "size_bytes": 426
+    },
+    {
+      "path": "development/stage388/stage388_provenance.json",
+      "sha256": "76bf024552309176aac5cbe5f0afb533ecb512dd96da5ea5c8174ddf4023bb77",
+      "size_bytes": 454
+    },
+    {
+      "path": "development/stage388/stage388_test_matrix.json",
+      "sha256": "8a5214168b90bf0d715b6feb4016f000ea37ca97a2ac85eeb307fc9d0b3b4565",
+      "size_bytes": 1555
+    },
+    {
+      "path": "development/stage388/stage388_threat_model.json",
+      "sha256": "91a6c99546e0a5ca33a6a44ac7a4bf1edba68586ddb7ed782636cb0535d1a72a",
+      "size_bytes": 730
+    },
+    {
+      "path": "development/stage388/stage388_trust_boundaries.json",
+      "sha256": "2555879d72f2ee02320ef684d8949e262a8b1fc17734be96c83193cb41ac8dcb",
+      "size_bytes": 665
+    },
+    {
+      "path": "development/stage388/test_stage388_fail_closed.py",
+      "sha256": "e88fc61cbdad8eef8fdc5e852673811887ecb41943fcbbfc53d21694447e7ff3",
+      "size_bytes": 9199
+    },
+    {
+      "path": "development/stage388/verify_stage388_assessment_package.py",
+      "sha256": "6d7d57189caecb354c1edfd3cb16fc6d894ffefb143e5d90e90d1e7c9f8244b1",
+      "size_bytes": 14695
+    },
+    {
+      "path": "development/stage388/verify_stage388_canonical_package.py",
+      "sha256": "8cb2983c81ffeb34f8d7bc68396789d122fa2abe835c6eccd05404f2efede8f5",
+      "size_bytes": 9945
+    },
+    {
+      "path": "docs/index.html",
+      "sha256": "6a556d97b1d8ddeb871c210aabf2a1c6e9f8dcbf03096965f1be4cb6754e5fce",
+      "size_bytes": 154746
+    }
+  ],
+  "entry_count": 23,
+  "external_timestamp_status": "not_performed_stage388",
+  "schema_version": "1.0",
+  "source_commit": "739cea647de6d64313be7be874a7aaa0295bc05e",
+  "source_stage": 387,
+  "stage": 388,
+  "timestamp_stage": 389
+}

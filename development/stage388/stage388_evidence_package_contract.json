@@ -1,0 +1,66 @@
+{
+  "forbidden_path_components": [
+    "core",
+    "private_core",
+    "private",
+    "secrets",
+    "keys",
+    "imported"
+  ],
+  "name": "Independent Assessment Evidence Package Contract",
+  "public_pages": {
+    "entrypoint": "docs/index.html",
+    "evidence_mirror_directory": "docs/verification/stage388",
+    "mirror_must_match_development_evidence": true
+  },
+  "publication_policy": {
+    "allowlist_only": true,
+    "credential_publication_allowed": false,
+    "private_key_publication_allowed": false,
+    "private_seed_publication_allowed": false,
+    "token_publication_allowed": false
+  },
+  "required_false_flags": {
+    "entire_system_quantum_safe": false,
+    "external_assessment_completed": false,
+    "formal_certification": false,
+    "system_wide_formal_acceptance": false
+  },
+  "required_stage387_evidence": [
+    "development/stage387/stage387_pqc_interoperability_policy.json",
+    "development/stage387/stage387_pqc_interoperability_policy.sha256",
+    "development/stage387/stage387_pqc_multi_implementation_interoperability_result.json",
+    "development/stage387/stage387_pqc_multi_implementation_interoperability_result.sha256",
+    "development/stage387/stage387_evidence_portability_manifest.json",
+    "development/stage387/stage387_evidence_portability_manifest.sha256"
+  ],
+  "schema_version": "1.0",
+  "source_stage": 387,
+  "stage": 388,
+  "stage388_public_files": [
+    "development/stage388/README.md",
+    "development/stage388/generate_stage388_evidence_manifest.py",
+    "development/stage388/stage388_assessment_readiness_result.json",
+    "development/stage388/stage388_assessment_readiness_result.sha256",
+    "development/stage388/stage388_assessment_scope.json",
+    "development/stage388/stage388_evidence_manifest.json",
+    "development/stage388/stage388_evidence_manifest.sha256",
+    "development/stage388/stage388_evidence_package_contract.json",
+    "development/stage388/stage388_guarantees.json",
+    "development/stage388/stage388_known_limitations.json",
+    "development/stage388/stage388_non_guarantees.json",
+    "development/stage388/stage388_provenance.json",
+    "development/stage388/stage388_test_matrix.json",
+    "development/stage388/stage388_threat_model.json",
+    "development/stage388/stage388_trust_boundaries.json",
+    "development/stage388/test_stage388_fail_closed.py",
+    "development/stage388/verify_stage388_assessment_package.py",
+    "development/stage388/verify_stage388_canonical_package.py"
+  ],
+  "success_decision": "independent_assessment_evidence_package_ready",
+  "supporting_public_files": [
+    ".github/workflows/stage388-independent-assessment-readiness.yml",
+    "README.md",
+    "docs/index.html"
+  ]
+}

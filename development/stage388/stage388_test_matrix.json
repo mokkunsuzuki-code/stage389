@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "stage": 388,
+  "normal_tests": [
+    {
+      "id": "N01",
+      "description": "valid Stage387 inherited evidence",
+      "expected": "pass"
+    },
+    {
+      "id": "N02",
+      "description": "all required Stage388 assessment documents present",
+      "expected": "pass"
+    },
+    {
+      "id": "N03",
+      "description": "all evidence hashes match",
+      "expected": "pass"
+    },
+    {
+      "id": "N04",
+      "description": "required non-certification flags remain false",
+      "expected": "pass"
+    }
+  ],
+  "negative_tests": [
+    {
+      "id": "F01",
+      "description": "Stage387 evidence modified",
+      "expected": "fail_closed"
+    },
+    {
+      "id": "F02",
+      "description": "required evidence missing",
+      "expected": "fail_closed"
+    },
+    {
+      "id": "F03",
+      "description": "manifest hash mismatch",
+      "expected": "fail_closed"
+    },
+    {
+      "id": "F04",
+      "description": "private material detected",
+      "expected": "fail_closed"
+    },
+    {
+      "id": "F05",
+      "description": "external_assessment_completed changed to true",
+      "expected": "fail_closed"
+    },
+    {
+      "id": "F06",
+      "description": "formal_certification changed to true",
+      "expected": "fail_closed"
+    },
+    {
+      "id": "F07",
+      "description": "system_wide_formal_acceptance changed to true",
+      "expected": "fail_closed"
+    },
+    {
+      "id": "F08",
+      "description": "entire_system_quantum_safe changed to true",
+      "expected": "fail_closed"
+    }
+  ]
+}
