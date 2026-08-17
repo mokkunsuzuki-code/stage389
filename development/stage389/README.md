@@ -208,9 +208,15 @@ Stage389 does not claim:
 
 `entire_system_quantum_safe = true`
 
-These values remain:
+These values remain explicitly false:
 
-`false`
+`external_assessment_completed = false`
+
+`formal_certification = false`
+
+`system_wide_formal_acceptance = false`
+
+`entire_system_quantum_safe = false`
 
 Stage389 also does not claim dual external timestamp completion while OpenTimestamps remains unverified.
 
