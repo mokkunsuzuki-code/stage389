@@ -514,3 +514,40 @@ development/stage388/*
 
 # Stage388 public independent-assessment verification workflow
 !.github/workflows/stage388-independent-assessment-readiness.yml
+
+# ============================================================
+# Stage389 local source records — never publish
+# Independent Assessment Package Dual External Timestamp
+# Anchoring & Verification Gate
+# ============================================================
+
+.stage389-source-stage388-commit
+.stage389-source-stage388-anchor.txt
+
+# ============================================================
+# Stage389 public dual external timestamp package
+# Independent Assessment Package Dual External Timestamp
+# Anchoring & Verification Gate
+# ============================================================
+
+!development/stage389/
+development/stage389/*
+
+!development/stage389/stage389_timestamp_target_contract.json
+!development/stage389/stage389_timestamp_policy.json
+
+# Stage389 public timestamp evidence records / verifier
+!development/stage389/stage389_rfc3161_evidence.json
+!development/stage389/stage389_opentimestamps_evidence.json
+!development/stage389/verify_stage389_dual_timestamp.py
+!development/stage389/stage389_dual_timestamp_result.json
+!development/stage389/stage389_dual_timestamp_result.sha256
+
+# Stage389 public Fail-Closed regression test suite
+!development/stage389/test_stage389_fail_closed.py
+
+# Stage389 public documentation
+!development/stage389/README.md
+
+# Stage389 public dual-timestamp verification workflow
+!.github/workflows/stage389-dual-timestamp-verification.yml

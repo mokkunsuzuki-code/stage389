@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "stage": 389,
+  "source_stage": 388,
+  "purpose": "Bind the finalized Stage388 independent-assessment evidence package to RFC3161 and OpenTimestamps external time anchors.",
+  "timestamp_subject": {
+    "path": "development/stage388/stage388_evidence_manifest.json",
+    "sha256": "c809cd5a45896ec8af4ae1ccdf292adc36c78583f16125243b3a7bdde95ab535",
+    "content_type": "application/json"
+  },
+  "bound_stage388_package": {
+    "canonical_package_sha256": "088c44ae8e80ce068e24e7a39e2065ed280207eae53ae42e58a5dabb05673bd3",
+    "canonical_entry_count": 23,
+    "source_commit": "15279b5d634d8b1a9804725d18223b80193b4e9e",
+    "source_decision": "independent_assessment_evidence_package_ready"
+  },
+  "required_external_anchors": [
+    "rfc3161",
+    "opentimestamps"
+  ],
+  "same_target_required": true,
+  "success_requires_both_anchors_verified": true,
+  "pending_is_not_success": true,
+  "success_decision": "independent_assessment_package_dual_timestamp_verified",
+  "pending_decision": "dual_timestamp_pending",
+  "fail_closed_decision": "fail_closed",
+  "required_false_state": {
+    "external_assessment_completed": false,
+    "formal_certification": false,
+    "system_wide_formal_acceptance": false,
+    "entire_system_quantum_safe": false
+  }
+}

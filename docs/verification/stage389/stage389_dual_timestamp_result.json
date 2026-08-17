@@ -1,0 +1,81 @@
+{
+  "bound_stage388_package": {
+    "canonical_entry_count": 23,
+    "canonical_package_sha256": "088c44ae8e80ce068e24e7a39e2065ed280207eae53ae42e58a5dabb05673bd3",
+    "source_commit": "15279b5d634d8b1a9804725d18223b80193b4e9e"
+  },
+  "checks": {
+    "dual_timestamp_verified": false,
+    "opentimestamps_cryptographic_verification_attempted": true,
+    "opentimestamps_proof_present": true,
+    "opentimestamps_subject_matches_contract": true,
+    "opentimestamps_verified": false,
+    "rfc3161_cryptographic_verification_attempted": true,
+    "rfc3161_proof_present": true,
+    "rfc3161_subject_matches_contract": true,
+    "rfc3161_verified": true,
+    "same_timestamp_target": true,
+    "source_stage_valid": true,
+    "stage388_canonical_package_sha256_matches": true,
+    "stage388_entry_count_matches": true,
+    "stage388_manifest_sha256_matches": true,
+    "stage_number_valid": true
+  },
+  "critical_failure_count": 0,
+  "decision": "dual_timestamp_pending",
+  "declared_evidence_metadata": {
+    "opentimestamps": {
+      "declared_opentimestamps_verified": false,
+      "evidence_status": "pending_confirmation"
+    },
+    "rfc3161": {
+      "declared_rfc3161_verified": true,
+      "evidence_status": "verified"
+    }
+  },
+  "derived_external_verification": {
+    "opentimestamps": {
+      "bitcoin_attestation_present": false,
+      "bitcoin_confirmation_verified": false,
+      "cryptographic_verification_attempted": true,
+      "failure": null,
+      "opentimestamps_verified": false,
+      "proof_present": true,
+      "semantic_verification_sha256": "fb146692ee48c1801de72d9f9f835307ad6ec42c37f486adc18327ab056120da",
+      "status": "verification_incomplete",
+      "target_matches_subject": true,
+      "verification_exit_code": 1,
+      "verification_incomplete_reason": "local_bitcoin_chain_data_unavailable",
+      "work_target_present": true
+    },
+    "rfc3161": {
+      "certificate_chain_verified": true,
+      "cryptographic_verification_attempted": true,
+      "failure": null,
+      "message_imprint_matches_subject": true,
+      "proof_present": true,
+      "rfc3161_verified": true,
+      "semantic_verification_sha256": "d2d09957f613d58dd67f70c3e590402669f6895faf82628063e9adc7c1ff9006",
+      "status": "verified",
+      "tsa_signature_verified": true,
+      "verification_exit_code": 0
+    }
+  },
+  "dual_timestamp_verified": false,
+  "engine": "independent_assessment_package_dual_external_timestamp_gate",
+  "failures": [],
+  "limitations": {
+    "entire_system_quantum_safe": false,
+    "external_assessment_completed": false,
+    "formal_certification": false,
+    "system_wide_formal_acceptance": false
+  },
+  "schema_version": "1.0",
+  "source_stage": 388,
+  "stage": 389,
+  "timestamp_subject": {
+    "path": "development/stage388/stage388_evidence_manifest.json",
+    "sha256": "c809cd5a45896ec8af4ae1ccdf292adc36c78583f16125243b3a7bdde95ab535"
+  },
+  "verification_status": "pending_external_confirmation"
+}

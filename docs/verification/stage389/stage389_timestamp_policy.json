@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0",
+  "stage": 389,
+  "engine": "independent_assessment_package_dual_external_timestamp_gate",
+  "source_stage": 388,
+  "timestamp_algorithms": {
+    "digest_algorithm": "SHA-256",
+    "rfc3161": {
+      "required": true,
+      "verification_required": true,
+      "message_imprint_must_match_subject": true,
+      "signature_must_verify": true,
+      "certificate_chain_must_verify": true
+    },
+    "opentimestamps": {
+      "required": true,
+      "verification_required": true,
+      "target_must_match_subject": true,
+      "bitcoin_confirmation_required_for_success": true,
+      "pending_confirmation_allowed_as_intermediate_state": true
+    }
+  },
+  "binding_policy": {
+    "stage388_manifest_sha256_must_match": true,
+    "stage388_canonical_package_sha256_must_match": true,
+    "stage388_entry_count_must_equal": 23,
+    "stage388_source_commit_must_match": true,
+    "both_anchors_must_reference_same_subject": true
+  },
+  "decision_policy": {
+    "both_verified": "independent_assessment_package_dual_timestamp_verified",
+    "opentimestamps_pending": "dual_timestamp_pending",
+    "any_binding_failure": "fail_closed",
+    "any_signature_or_proof_failure": "fail_closed"
+  },
+  "non_claim_policy": {
+    "external_assessment_completed": false,
+    "formal_certification": false,
+    "system_wide_formal_acceptance": false,
+    "entire_system_quantum_safe": false
+  }
+}

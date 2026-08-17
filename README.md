@@ -1345,3 +1345,177 @@ See the repository-level:
 The MIT License applies to the published source code and documentation in this
 repository. It does not override confidentiality requirements, security
 boundaries, private-material restrictions, or applicable third-party licenses.
+
+## Stage389 — Independent Assessment Package Dual External Timestamp Anchoring & Verification Gate
+
+日本語：
+
+**第三者評価パッケージ二重外部タイムスタンプ・アンカー／検証ゲート**
+
+Stage389 extends Stage388 without modifying or replacing the Stage388 canonical evidence package.
+
+The Stage388 Evidence Manifest remains the common timestamp subject for both RFC3161 and OpenTimestamps.
+
+### Stage388 Binding
+
+Stage388 source commit:
+
+`15279b5d634d8b1a9804725d18223b80193b4e9e`
+
+Stage388 Evidence Manifest SHA-256:
+
+`c809cd5a45896ec8af4ae1ccdf292adc36c78583f16125243b3a7bdde95ab535`
+
+Stage388 canonical package SHA-256:
+
+`088c44ae8e80ce068e24e7a39e2065ed280207eae53ae42e58a5dabb05673bd3`
+
+Canonical entry count:
+
+`23`
+
+### Current Stage389 Decision
+
+`dual_timestamp_pending`
+
+Verification status:
+
+`pending_external_confirmation`
+
+Critical failure count:
+
+`0`
+
+Stage389 does not issue the success decision until both timestamp mechanisms are independently verified.
+
+### RFC3161
+
+Current state:
+
+`rfc3161_verified = true`
+
+The RFC3161 response is cryptographically verified against the Stage388 Evidence Manifest.
+
+The verifier derives this result from actual RFC3161 proof material rather than trusting public Boolean metadata.
+
+### OpenTimestamps
+
+Current state:
+
+`opentimestamps_proof_present = true`
+
+`opentimestamps_verified = false`
+
+Current verification status:
+
+`verification_incomplete`
+
+Current reason:
+
+`local_bitcoin_chain_data_unavailable`
+
+The OpenTimestamps proof exists and is bound to the same Stage388 Evidence Manifest.
+
+However, Stage389 does not claim Bitcoin confirmation or OpenTimestamps verification until that verification actually succeeds.
+
+### Dual External Timestamp State
+
+Current state:
+
+`rfc3161_verified = true`
+
+`opentimestamps_verified = false`
+
+`dual_timestamp_verified = false`
+
+Therefore the current decision remains:
+
+`dual_timestamp_pending`
+
+The success decision:
+
+`independent_assessment_package_dual_timestamp_verified`
+
+is only permitted when both external timestamp mechanisms independently verify against the same timestamp subject.
+
+### Deterministic External Verification
+
+Stage389 separates execution-specific verification-tool output from deterministic security state.
+
+The canonical result uses semantic verification fingerprints for RFC3161 and OpenTimestamps.
+
+Repeated verification of the same security state produces byte-for-byte identical non-empty JSON.
+
+### Fail-Closed Verification
+
+Stage389 includes 10 negative regression tests covering:
+
+- forged Boolean verification claims
+- Stage388 manifest tampering
+- timestamp-subject tampering
+- canonical package hash mismatch
+- Stage388 entry-count mismatch
+- RFC3161 subject mismatch
+- OpenTimestamps subject mismatch
+- source-stage mismatch
+- required evidence removal
+- pending or incomplete proof promotion attempts
+
+Current regression result:
+
+`10 / 10 PASS`
+
+Pending or incomplete OpenTimestamps verification cannot produce a successful dual-timestamp decision.
+
+### Publication Boundary
+
+Stage389 publishes reviewed verification metadata only.
+
+Raw external timestamp material remains private, including:
+
+- RFC3161 raw response material
+- OpenTimestamps raw `.ots` proof material
+- private cryptographic keys
+- private seeds
+- credentials
+- access tokens
+- GitHub secrets
+- private QKD key material
+
+Protected repository paths remain excluded:
+
+`core/`
+
+`private_core/`
+
+`private/`
+
+`secrets/`
+
+`keys/`
+
+`imported/`
+
+### Mandatory Non-Claims
+
+The following remain false:
+
+`external_assessment_completed = false`
+
+`formal_certification = false`
+
+`system_wide_formal_acceptance = false`
+
+`entire_system_quantum_safe = false`
+
+Stage389 also does not claim completed dual external timestamp verification while OpenTimestamps remains unverified.
+
+### Stage389 License
+
+This project is licensed under the MIT License.
+
+See the repository-level:
+
+`LICENSE`
+
+The MIT License applies to the published source code and documentation in this repository. It does not override confidentiality requirements, security boundaries, private-material restrictions, or applicable third-party licenses.

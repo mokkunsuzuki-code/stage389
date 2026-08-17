@@ -1,0 +1,31 @@
+{
+  "bitcoin_attestation_present": false,
+  "bitcoin_confirmation_verified": false,
+  "cryptographic_verification": {
+    "declared_boolean_trusted": false,
+    "result_derived_from_raw_proof": true,
+    "tool": "ots verify",
+    "verification_attempted": true,
+    "verification_exit_code": 1,
+    "verification_output_sha256": "2f2bd0ce6864fbcea35ed8c1d3d02269f86b9f93adf441ce14182f5c30dac8cf"
+  },
+  "evidence_status": "pending_confirmation",
+  "evidence_type": "opentimestamps",
+  "opentimestamps_verified": false,
+  "pending_state": {
+    "bitcoin_confirmation_pending": true,
+    "pending_is_success": false,
+    "requires_future_upgrade_and_verify": true
+  },
+  "proof_present": true,
+  "public_evidence_available": true,
+  "raw_proof_published": false,
+  "raw_proof_sha256": "1f048ac415bd460b59e1bb9cbe5970d33dbb92bcc3f162448d49a67e6e302731",
+  "schema_version": "1.0",
+  "stage": 389,
+  "target_matches_subject": true,
+  "timestamp_subject": {
+    "path": "development/stage388/stage388_evidence_manifest.json",
+    "sha256": "c809cd5a45896ec8af4ae1ccdf292adc36c78583f16125243b3a7bdde95ab535"
+  }
+}

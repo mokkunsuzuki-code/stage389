@@ -1,0 +1,28 @@
+{
+  "cryptographic_verification": {
+    "declared_boolean_trusted": false,
+    "result_derived_from_raw_proof": true,
+    "tool": "openssl ts -verify",
+    "verification_attempted": true,
+    "verification_exit_code": 0,
+    "verification_output_sha256": "a35c80ba79a0fd10768b4bef81dcb36421736cc024c6d825254f65c776127262"
+  },
+  "evidence_status": "verified",
+  "evidence_type": "rfc3161",
+  "message_imprint_algorithm": "SHA-256",
+  "message_imprint_matches_subject": true,
+  "public_evidence_available": true,
+  "raw_response_published": false,
+  "raw_response_sha256": "e500c25c0471d2e18f6d03377d1cb38f6c27de88b8af8a81555eb75397d2889e",
+  "response_present": true,
+  "rfc3161_verified": true,
+  "schema_version": "1.0",
+  "stage": 389,
+  "timestamp_subject": {
+    "path": "development/stage388/stage388_evidence_manifest.json",
+    "sha256": "c809cd5a45896ec8af4ae1ccdf292adc36c78583f16125243b3a7bdde95ab535"
+  },
+  "timestamp_time_verified": true,
+  "tsa_certificate_chain_verified": true,
+  "tsa_signature_verified": true
+}

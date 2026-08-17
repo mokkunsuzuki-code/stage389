@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="google" content="notranslate">
-  <title>Stage388: Independent Assessment Readiness &amp; Evidence Package Gate</title>
+  <title>Stage389: Independent Assessment Package Dual External Timestamp Anchoring &amp; Verification Gate</title>
   <style>
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 0; background: #f6f8fa; color: #24292f; }
     header { background: #0d1117; color: white; padding: 44px 32px; }
@@ -27,6 +27,53 @@
 <body>
 
 
+
+<!-- STAGE389_CURRENT_PAGE_HEADER_START -->
+<section class="card">
+  <h1>Stage389</h1>
+
+  <h2>
+    Independent Assessment Package
+    Dual External Timestamp Anchoring
+    &amp; Verification Gate
+  </h2>
+
+  <p>
+    Stage388で決定論的に固定された
+    第三者評価用Evidence Manifestを変更せず、
+    RFC3161とOpenTimestampsという
+    2つの独立した外部時間証明へ結合し、
+    同一対象への二重タイムスタンプを
+    Fail-Closedで検証します。
+  </p>
+
+  <p>
+    現在、RFC3161は実証明に対する
+    cryptographic verificationが完了しています。
+    OpenTimestamps proofも存在し、
+    Stage388 Evidence Manifestとの対象一致を確認していますが、
+    Bitcoin側の検証環境が必要なチェーン情報を
+    まだ利用できないため、
+    OpenTimestamps成功とは判定していません。
+  </p>
+
+  <p>
+    Current decision:
+    <code>dual_timestamp_pending</code>
+  </p>
+
+  <p>
+    RFC3161 verified:
+    <code>true</code>
+    &nbsp;|&nbsp;
+    OpenTimestamps verified:
+    <code>false</code>
+    &nbsp;|&nbsp;
+    Dual timestamp verified:
+    <code>false</code>
+  </p>
+</section>
+<!-- STAGE389_CURRENT_PAGE_HEADER_END -->
 
 <!-- STAGE388_CURRENT_PAGE_HEADER_START -->
 <section class="card">
@@ -4928,6 +4975,341 @@ Verified / Pending / Block</pre>
 </section>
 <!-- STAGE388_APPEND_ONLY_END -->
 
+
+<!-- STAGE389_APPEND_ONLY_START -->
+<section class="card" id="stage389">
+  <h2>
+    Stage389: Independent Assessment Package
+    Dual External Timestamp Anchoring
+    &amp; Verification Gate
+  </h2>
+
+  <p>
+    Stage389は、Stage388で固定された
+    第三者評価用Evidence Manifestを対象として、
+    RFC3161とOpenTimestampsによる
+    二重外部時間アンカーを検証するステージです。
+  </p>
+
+  <p>
+    Stage388のcanonical evidence、
+    canonical package hash、
+    entry count、source commitは変更せず、
+    2種類のtimestamp mechanismが
+    同一のStage388 Evidence Manifestを参照することを
+    Fail-Closedで要求します。
+  </p>
+
+  <h3>Stage388 Timestamp Subject</h3>
+
+  <ul>
+    <li>
+      Stage388 Evidence Manifest SHA-256:
+      <code>
+        c809cd5a45896ec8af4ae1ccdf292adc36c78583f16125243b3a7bdde95ab535
+      </code>
+    </li>
+
+    <li>
+      Stage388 canonical package SHA-256:
+      <code>
+        088c44ae8e80ce068e24e7a39e2065ed280207eae53ae42e58a5dabb05673bd3
+      </code>
+    </li>
+
+    <li>
+      Canonical entry count:
+      <code>23</code>
+    </li>
+  </ul>
+
+  <h3>Current Decision</h3>
+
+  <p>
+    <code>dual_timestamp_pending</code>
+  </p>
+
+  <p>
+    このdecisionは、
+    二重外部タイムスタンプの最終検証が
+    まだ完了していないことを意味します。
+  </p>
+
+  <p>
+    Stage389は未確認状態を
+    成功へ昇格させません。
+  </p>
+
+  <h3>RFC3161 Verification</h3>
+
+  <ul>
+    <li>
+      Proof present:
+      <code>true</code>
+    </li>
+
+    <li>
+      Cryptographic verification attempted:
+      <code>true</code>
+    </li>
+
+    <li>
+      Message imprint matches Stage388 subject:
+      <code>true</code>
+    </li>
+
+    <li>
+      TSA signature verified:
+      <code>true</code>
+    </li>
+
+    <li>
+      Certificate chain verified:
+      <code>true</code>
+    </li>
+
+    <li>
+      RFC3161 verified:
+      <code>true</code>
+    </li>
+
+    <li>
+      Status:
+      <code>verified</code>
+    </li>
+  </ul>
+
+  <h3>OpenTimestamps Verification</h3>
+
+  <ul>
+    <li>
+      Work target present:
+      <code>true</code>
+    </li>
+
+    <li>
+      Proof present:
+      <code>true</code>
+    </li>
+
+    <li>
+      Target matches Stage388 subject:
+      <code>true</code>
+    </li>
+
+    <li>
+      Cryptographic verification attempted:
+      <code>true</code>
+    </li>
+
+    <li>
+      Bitcoin confirmation verified:
+      <code>false</code>
+    </li>
+
+    <li>
+      OpenTimestamps verified:
+      <code>false</code>
+    </li>
+
+    <li>
+      Status:
+      <code>verification_incomplete</code>
+    </li>
+
+    <li>
+      Reason:
+      <code>local_bitcoin_chain_data_unavailable</code>
+    </li>
+  </ul>
+
+  <p>
+    OpenTimestamps proofが存在することと、
+    Bitcoin blockchainによる最終検証が完了したことは
+    同じ意味ではありません。
+  </p>
+
+  <p>
+    Stage389は、ローカルBitcoin検証環境に
+    必要なチェーンデータが存在しない状態を
+    cryptographic successとして扱いません。
+  </p>
+
+  <h3>Dual Timestamp State</h3>
+
+  <ul>
+    <li>
+      RFC3161 verified:
+      <code>true</code>
+    </li>
+
+    <li>
+      OpenTimestamps verified:
+      <code>false</code>
+    </li>
+
+    <li>
+      Dual timestamp verified:
+      <code>false</code>
+    </li>
+  </ul>
+
+  <p>
+    成功decision:
+    <code>
+      independent_assessment_package_dual_timestamp_verified
+    </code>
+  </p>
+
+  <p>
+    は、RFC3161とOpenTimestampsの両方が
+    同一のStage388 Evidence Manifestに対して
+    独立に検証成功した場合にのみ発行できます。
+  </p>
+
+  <h3>Deterministic External Verification</h3>
+
+  <p>
+    Stage389は外部ツールのraw実行出力と、
+    security-relevantな決定論的状態を分離しています。
+  </p>
+
+  <p>
+    RFC3161とOpenTimestampsについて
+    semantic verification fingerprintを生成し、
+    temporary path、runtime text、
+    Bitcoin node synchronization progressなどの
+    実行環境依存文字列がcanonical resultを
+    不必要に変化させないようにしています。
+  </p>
+
+  <p>
+    同一security stateでの複数回検証において、
+    non-empty JSON resultのbyte-for-byte一致を
+    確認しています。
+  </p>
+
+  <h3>Fail-Closed Negative Verification</h3>
+
+  <p>
+    Stage389では10件のnegative regression testを実行し、
+    false successを拒否することを確認しています。
+  </p>
+
+  <ol>
+    <li>Forged Boolean evidence cannot succeed</li>
+    <li>Stage388 manifest tampering is rejected</li>
+    <li>Timestamp subject hash tampering is rejected</li>
+    <li>Canonical package hash tampering is rejected</li>
+    <li>Stage388 entry-count tampering is rejected</li>
+    <li>RFC3161 subject mismatch is rejected</li>
+    <li>OpenTimestamps subject mismatch is rejected</li>
+    <li>Source-stage tampering is rejected</li>
+    <li>Missing required evidence is rejected</li>
+    <li>Pending or incomplete proof cannot promote success</li>
+  </ol>
+
+  <p>
+    Current regression result:
+    <code>10 / 10 PASS</code>
+  </p>
+
+  <h3>Mandatory Non-Claim State</h3>
+
+  <ul>
+    <li>
+      External assessment completed:
+      <code>false</code>
+    </li>
+
+    <li>
+      Formal certification:
+      <code>false</code>
+    </li>
+
+    <li>
+      System-wide formal acceptance:
+      <code>false</code>
+    </li>
+
+    <li>
+      Entire system quantum safe:
+      <code>false</code>
+    </li>
+  </ul>
+
+  <h3>Public Stage389 Evidence</h3>
+
+  <ul>
+    <li>
+      <a href="./verification/stage389/README.md">
+        Stage389 Verification Instructions
+      </a>
+    </li>
+
+    <li>
+      <a href="./verification/stage389/stage389_timestamp_target_contract.json">
+        Stage389 Timestamp Target Contract
+      </a>
+    </li>
+
+    <li>
+      <a href="./verification/stage389/stage389_timestamp_policy.json">
+        Stage389 Timestamp Policy
+      </a>
+    </li>
+
+    <li>
+      <a href="./verification/stage389/stage389_rfc3161_evidence.json">
+        Stage389 RFC3161 Public Evidence
+      </a>
+    </li>
+
+    <li>
+      <a href="./verification/stage389/stage389_opentimestamps_evidence.json">
+        Stage389 OpenTimestamps Public Evidence
+      </a>
+    </li>
+
+    <li>
+      <a href="./verification/stage389/stage389_dual_timestamp_result.json">
+        Stage389 Dual Timestamp Result
+      </a>
+    </li>
+
+    <li>
+      <a href="./verification/stage389/stage389_dual_timestamp_result.sha256">
+        Stage389 Result SHA-256 Record
+      </a>
+    </li>
+  </ul>
+
+  <h3>Preservation Boundary</h3>
+
+  <p>
+    Stage389はStage388以前の検証結果、
+    公開ページ、公開証拠を削除、置換、
+    上書きしません。
+  </p>
+
+  <h3>Publication Boundary</h3>
+
+  <ul>
+    <li>No private core is published.</li>
+    <li>No private directory is published.</li>
+    <li>No raw RFC3161 response is published.</li>
+    <li>No raw OpenTimestamps proof is published.</li>
+    <li>No secret, credential, token, seed, or private key is published.</li>
+    <li>No raw QKD secret material is published.</li>
+    <li>Only reviewed public verification metadata is published.</li>
+  </ul>
+
+  <p>
+    <strong>License:</strong>
+    MIT License
+  </p>
+</section>
+<!-- STAGE389_APPEND_ONLY_END -->
 
 </body>
 </html>

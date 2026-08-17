@@ -1,0 +1,481 @@
+name: Stage389 Dual External Timestamp Verification
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  stage389-public-verification:
+    name: Stage389 Public Verification
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Show environment
+        run: |
+          python --version
+          git --version
+          uname -a
+
+      - name: Validate Stage389 Python syntax
+        run: |
+          python -m py_compile \
+            development/stage389/verify_stage389_dual_timestamp.py \
+            development/stage389/test_stage389_fail_closed.py
+
+      - name: Validate Stage389 public JSON
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          names = [
+              "stage389_timestamp_target_contract.json",
+              "stage389_timestamp_policy.json",
+              "stage389_rfc3161_evidence.json",
+              "stage389_opentimestamps_evidence.json",
+              "stage389_dual_timestamp_result.json",
+          ]
+
+          root = Path(
+              "development/stage389"
+          )
+
+          for name in names:
+              path = root / name
+
+              if not path.is_file():
+                  raise SystemExit(
+                      f"FAIL: missing {path}"
+                  )
+
+              json.loads(
+                  path.read_text(
+                      encoding="utf-8"
+                  )
+              )
+
+              print(
+                  "PASS:",
+                  path,
+              )
+
+          print(
+              "PASS: Stage389 public JSON valid"
+          )
+          PY
+
+      - name: Verify Stage389 result SHA-256
+        run: |
+          sha256sum -c \
+            development/stage389/stage389_dual_timestamp_result.sha256
+
+      - name: Verify Stage388 binding
+        run: |
+          python - <<'PY'
+          import hashlib
+          import json
+          from pathlib import Path
+
+          manifest_path = Path(
+              "development/stage388/"
+              "stage388_evidence_manifest.json"
+          )
+
+          contract_path = Path(
+              "development/stage389/"
+              "stage389_timestamp_target_contract.json"
+          )
+
+          manifest = json.loads(
+              manifest_path.read_text(
+                  encoding="utf-8"
+              )
+          )
+
+          contract = json.loads(
+              contract_path.read_text(
+                  encoding="utf-8"
+              )
+          )
+
+          actual_manifest_sha = hashlib.sha256(
+              manifest_path.read_bytes()
+          ).hexdigest()
+
+          expected_manifest_sha = contract[
+              "timestamp_subject"
+          ][
+              "sha256"
+          ]
+
+          actual_package_sha = manifest[
+              "canonical_package_sha256"
+          ]
+
+          expected_package_sha = contract[
+              "bound_stage388_package"
+          ][
+              "canonical_package_sha256"
+          ]
+
+          actual_entry_count = manifest[
+              "entry_count"
+          ]
+
+          expected_entry_count = contract[
+              "bound_stage388_package"
+          ][
+              "canonical_entry_count"
+          ]
+
+          print(
+              "actual_manifest_sha256 =",
+              actual_manifest_sha,
+          )
+
+          print(
+              "expected_manifest_sha256 =",
+              expected_manifest_sha,
+          )
+
+          print(
+              "actual_package_sha256 =",
+              actual_package_sha,
+          )
+
+          print(
+              "expected_package_sha256 =",
+              expected_package_sha,
+          )
+
+          print(
+              "actual_entry_count =",
+              actual_entry_count,
+          )
+
+          print(
+              "expected_entry_count =",
+              expected_entry_count,
+          )
+
+          assert (
+              actual_manifest_sha
+              == expected_manifest_sha
+          )
+
+          assert (
+              actual_package_sha
+              == expected_package_sha
+          )
+
+          assert (
+              actual_entry_count
+              == expected_entry_count
+          )
+
+          print(
+              "PASS: Stage388 binding exact"
+          )
+          PY
+
+      - name: Verify stored Stage389 security state
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          data = json.loads(
+              Path(
+                  "development/stage389/"
+                  "stage389_dual_timestamp_result.json"
+              ).read_text(
+                  encoding="utf-8"
+              )
+          )
+
+          checks = data[
+              "checks"
+          ]
+
+          rfc = data[
+              "derived_external_verification"
+          ][
+              "rfc3161"
+          ]
+
+          ots = data[
+              "derived_external_verification"
+          ][
+              "opentimestamps"
+          ]
+
+          assert data["stage"] == 389
+          assert data["source_stage"] == 388
+
+          assert (
+              data["decision"]
+              == "dual_timestamp_pending"
+          )
+
+          assert (
+              data["verification_status"]
+              == "pending_external_confirmation"
+          )
+
+          assert (
+              data["critical_failure_count"]
+              == 0
+          )
+
+          assert (
+              checks[
+                  "same_timestamp_target"
+              ]
+              is True
+          )
+
+          assert (
+              checks[
+                  "rfc3161_verified"
+              ]
+              is True
+          )
+
+          assert (
+              rfc["status"]
+              == "verified"
+          )
+
+          assert (
+              checks[
+                  "opentimestamps_proof_present"
+              ]
+              is True
+          )
+
+          assert (
+              checks[
+                  "opentimestamps_verified"
+              ]
+              is False
+          )
+
+          assert (
+              ots["status"]
+              == "verification_incomplete"
+          )
+
+          assert (
+              ots.get(
+                  "verification_incomplete_reason"
+              )
+              ==
+              "local_bitcoin_chain_data_unavailable"
+          )
+
+          assert (
+              data[
+                  "dual_timestamp_verified"
+              ]
+              is False
+          )
+
+          for key in [
+              "external_assessment_completed",
+              "formal_certification",
+              "system_wide_formal_acceptance",
+              "entire_system_quantum_safe",
+          ]:
+              assert (
+                  data[
+                      "limitations"
+                  ][key]
+                  is False
+              )
+
+          print(
+              "PASS: stored Stage389 "
+              "security state valid"
+          )
+          PY
+
+      - name: Verify deterministic semantic fingerprints
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          data = json.loads(
+              Path(
+                  "development/stage389/"
+                  "stage389_dual_timestamp_result.json"
+              ).read_text(
+                  encoding="utf-8"
+              )
+          )
+
+          derived = data[
+              "derived_external_verification"
+          ]
+
+          for kind in [
+              "rfc3161",
+              "opentimestamps",
+          ]:
+              item = derived[kind]
+
+              semantic_hash = item.get(
+                  "semantic_verification_sha256"
+              )
+
+              assert isinstance(
+                  semantic_hash,
+                  str,
+              )
+
+              assert len(
+                  semantic_hash
+              ) == 64
+
+              assert (
+                  "verification_output_sha256"
+                  not in item
+              )
+
+              print(
+                  f"PASS: {kind} "
+                  f"semantic hash = "
+                  f"{semantic_hash}"
+              )
+
+          print(
+              "PASS: execution-specific "
+              "raw output hashes excluded"
+          )
+          PY
+
+      - name: Run Stage389 Fail-Closed tests
+        run: |
+          python \
+            development/stage389/test_stage389_fail_closed.py
+
+      - name: Verify Stage389 publication boundary
+        run: |
+          python - <<'PY'
+          import subprocess
+
+          result = subprocess.run(
+              [
+                  "git",
+                  "ls-files",
+              ],
+              check=True,
+              text=True,
+              capture_output=True,
+          )
+
+          forbidden = {
+              "core",
+              "private_core",
+              "private",
+              "secrets",
+              "keys",
+              "imported",
+          }
+
+          failures = []
+
+          for name in result.stdout.splitlines():
+              parts = set(
+                  name.split("/")
+              )
+
+              if parts & forbidden:
+                  failures.append(
+                      name
+                  )
+
+          if failures:
+              for name in failures:
+                  print(
+                      "FAIL:",
+                      name,
+                  )
+
+              raise SystemExit(1)
+
+          print(
+              "PASS: no forbidden tracked paths"
+          )
+          PY
+
+      - name: Verify Stage389 documentation non-claims
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          texts = [
+              Path(
+                  "README.md"
+              ).read_text(
+                  encoding="utf-8"
+              ),
+              Path(
+                  "development/stage389/"
+                  "README.md"
+              ).read_text(
+                  encoding="utf-8"
+              ),
+          ]
+
+          required = [
+              "dual_timestamp_pending",
+              "rfc3161_verified = true",
+              "opentimestamps_verified = false",
+              "dual_timestamp_verified = false",
+              "local_bitcoin_chain_data_unavailable",
+              "external_assessment_completed = false",
+              "formal_certification = false",
+              "system_wide_formal_acceptance = false",
+              "entire_system_quantum_safe = false",
+              "MIT License",
+          ]
+
+          for item in required:
+              if not all(
+                  item in text
+                  for text in texts
+              ):
+                  raise SystemExit(
+                      "FAIL: missing "
+                      + item
+                  )
+
+              print(
+                  "PASS:",
+                  item,
+              )
+
+          print(
+              "PASS: Stage389 documentation "
+              "remains non-overclaiming"
+          )
+          PY
+
+      - name: Final repository diff check
+        run: |
+          git diff --check
